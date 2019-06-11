@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Teleconsulta | Smadia Clinic</title>
+
+  <script src="https://cdn.temasys.io/skylink/skylinkjs/latest/skylink.complete.js"></script>
+  <script src="libs/audioMeter.js"></script>
+
+
+  <link rel="stylesheet" href="style/main.css">
+
+</head>
+
+<body>
+
+  <div id="header">
+    <img id="logo" src="https://www.fontumi.co/smadiaclinic/img/smadiafontumi.png" alt="Tele Medicina Fontumi - Smadia"
+      data-version="1.0.0">
+  </div>
+  <div id="content" class="precall">
+    <!-- Content Templates Go Here =) -->
+  </div>
+  <div id="command-bar" class="precall">
+    <div id="controls">
+      <button class="media-control" id="local-mute-audio">Mute Audio</button>
+      <button class="media-control" id="local-mute-video">Disable Video</button>
+      <button class="media-control" id="local-share-screen">Compartir Pantalla</button>
+      <button class="media-control" id="local-disconnect">Colgar</button>
+    </div>
+    <h3>Participantes:</h3>
+    <div id="participants-list">
+    </div>
+    <h3>Chat Messages:</h3>
+    <div id="messages">
+    </div>
+    <div id="message-controller">
+      <input type="text" id="outgoing-message" placeholder="Send a message">
+      <button id="send-message-button" class="primary">Enviar </button>
+    </div>
+  </div>
+
+
+  <template id="precall-view">
+    <div class="precall">
+      <h1>Let's check if you can connect</h1>
+      <p>
+        Are you able to see yourself and connect?<br>
+      </p>
+      <div id="video-tester"></div>
+
+      <!-- <div class="precall-media-device-selector">
+      <div>
+        Video Device:
+        <select id="video-selector">
+          <option>System Default</option>
+        </select>
+      </div>
+      <div>
+        Audio Device:
+        <select id="audio-selector">
+          <option>System Default</option>
+        </select>
+      </div>
+    </div>-->
+
+      <div id="connectivity-display">Server Connectivity:
+        <span id="connectivity-status">
+          <img src="assets/images/spinner.svg">;
+        </span>
+      </div>
+    </div>
+    <button class="step-progress primary">Yes, Lets Continue</button>
+    <!-- <div><a href="https://support.temays.io">No, I would like to troubleshoot</a></div> -->
+    <div class="about-box">
+      <h1>Secure, Reliable Connectivity</h1>
+      <p>
+        Add real-time interactions to any app, on any device, at any scale, with just a few lines of code.
+      </p>
+      <p>
+        Temasys Skylink helps your business engage customers anywhere, anytime, across the globe.
+      </p>
+    </div>
+  </template>
+
+  <template id="postcall-view">
+    <div class="postcall">
+      <h1>Thank you for trying Skylink</h1>
+      <p>
+        You have successfully left the call.
+      </p>
+    </div>
+    <div class="about-box">
+      <h1>Learn More About Skylink</h1>
+      <p>
+        To learn more about how Skylink real-time communication solutions can help you, please see our website at
+        <a href="https://temasys.io">Temasys.io</a>
+      </p>
+      <p>
+        If you have technical questions about this demo or your own implementation of Skylink, our support team is happy
+        to address your questions at <a href="http://support.temasys.io">support.temasys.io</a>
+      </p>
+    </div>
+  </template>
+
+
+  <template id="welcome-view">
+    <div>
+      <div id="step-view" class="user-input">
+        <!-- Step 1 -->
+        <div class="step" data-step-id="1" data-step-completed="false">
+          <label for="username">Hello, what is your name?</label>
+          <input type="text" id="username" tabIndex="1" class="step_form" autocomplete="off" placeholder="Nombre">
+          <button class="step-progress primary">Continue</button>
+        </div>
+        <!-- Step 2 -->
+        <div class="step" data-step-id="2" data-step-completed="false">
+          <label for="roomId">What room would you like to join?</label>
+          <input type="text" id="roomId" class="step-form" autocomplete="off" placeholder="ID de la">
+          <button class="step-progress primary">Continue</button>
+        </div>
+        <!-- Step 3 -->
+        <!--<div class="step" data-step-id="3" data-step-completed="false">
+        <label for="roomPin">Please enter your room PIN</label>
+        <input type="text" id="roomPin" class="step-form" minlength="4" maxlength="4" autocomplete="off">
+        <!--<div class="validation-error hide" id="error-pin">The PIN you have entered is invalid, please try again</div>
+        <button class="step-progress primary">Continue</button>
+      </div>-->
+        <!-- Progress Indicator -->
+        <div class="step-display">
+          <div class="step-dot"></div>
+          <div class="step-dot"></div>
+          <div class="step-dot"></div>
+        </div>
+      </div>
+      <div class="about-box">
+        <h1>Join the Conversation</h1>
+        <h2>A Temasys Skylink Demonstrator</h2>
+        <p>
+          Break down the barriers between you and your customers, with truly integrated options for seamless,
+          friction-free real-time interaction, embedded directly in any application, web property, or mobile solution.
+        </p>
+        <p>
+          Temasys offers industry-leading ease-of-use, unrivaled speed of implementation, and
+          world-class support backed by secure, globally available, cloud-based infrastructure and
+          tried-and-tested developer-centric SDKs allow you to focus on delivering world-class
+          products with confidence.
+        </p>
+      </div>
+    </div>
+  </template>
+
+  <template id="loader">
+    <canvas id="loader-graphic"></canvas>
+  </template>
+
+  <template id="participant">
+    <div class="participant-item">
+      <div class="participant-item-name">Loading...</div>
+      <div class="participant-item-locale">Locating...</div>
+      <!--<div class="participant-item-status">
+      <div class="participant-status-icon audio active">
+        <img src="assets/icons/feather/mic.svg" alt="">
+      </div>
+      <div class="participant-status-icon video active">
+        <img src="assets/icons/feather/video.svg" alt="">
+      </div>
+      <div class="participant-status-icon screenshare">
+        <img src="assets/icons/feather/airplay.svg" alt="">
+      </div>
+    </div>-->
+      <div class="participant-stats">
+        LOCAL USER
+      </div>
+    </div>
+  </template>
+
+  <template id="message">
+    <div class="message-item">
+      <div class="col1">
+        <div class="message-item-sender-icon"></div>
+      </div>
+      <div class="col2">
+        <div class="message-item-sender-name"></div>
+        <div class="message-item-timestamp"></div>
+        <div class="message-item-content"></div>
+      </div>
+    </div>
+  </template>
+
+  <canvas id="capture-frame" width="640" height="480"></canvas>
+  <script src="main.js"></script>
+
+</body>
+
+</html>

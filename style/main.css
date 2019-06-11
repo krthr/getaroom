@@ -1,0 +1,472 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600");
+
+body,
+html {
+    background: linear-gradient(90deg, #031b3e, #69506e);
+    color: #fff;
+    font-family: "Source Sans Pro", sans-serif;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+input {
+    border: none;
+    border-radius: 4px;
+    font-size: 21px;
+    font-family: "Source Sans Pro", sans-serif;
+    padding: 5px;
+    margin: 10px;
+    text-align: center;
+}
+
+button {
+    background-color: #00000000;
+    border: none;
+    color: #ffd220;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 5px;
+    margin-top: 10px;
+    vertical-align: text-bottom;
+    font-size: 15px;
+}
+
+button::after {
+    content: " ⇢";
+}
+
+button.primary {
+    background-color: #ffd220;
+    color: #000;
+    border-radius: 20px;
+}
+
+label {
+    padding: 10px;
+    font-size: 16px;
+}
+
+#header {
+    height: 100px;
+}
+
+#header #logo {
+    height: 90px;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+#content {
+    display: inline-block;
+    width: 70%;
+    min-height: 90%;
+    vertical-align: top;
+    transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+    text-align: center;
+    overflow: hidden;
+}
+
+@media (max-width: 700px) {
+    #content {
+        width: 100%;
+    }
+}
+
+#content.precall {
+    width: 80%;
+}
+
+@media (max-width: 700px) {
+    #content.precall {
+        width: 100%;
+    }
+}
+
+#capture-frame {
+    position: absolute;
+    left: -2000px;
+    top: -2000px;
+}
+
+#command-bar {
+    display: inline-block;
+    overflow: hidden;
+    width: 30%;
+    background-color: #fff;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    top: 0;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+    transition: all 200ms cubic-bezier(0.215, 0.61, 0.355, 1);
+    opacity: 1;
+}
+
+@media (max-width: 700px) {
+    #command-bar {
+        width: 0;
+        opacity: 0;
+    }
+
+    #command-bar.expanded {
+        width: 100%;
+        top: 0;
+        opacity: 1;
+    }
+}
+
+#command-bar.precall {
+    width: 0;
+}
+
+@media (max-width: 700px) {
+    #command-bar.precall {
+        width: 0;
+        opacity: 0;
+    }
+}
+
+#command-bar #controls {
+    text-align: center;
+    border-bottom: 1px solid black;
+    min-width: 350px;
+    background: linear-gradient(#231935, #29262f);
+}
+
+#command-bar #controls button.media-control {
+    width: 20%;
+    height: 100px;
+    background-color: #42476b;
+    color: white;
+    margin: 20px 5px;
+    padding: 3px;
+    border: 0;
+    border-radius: 8px;
+    transition: all 200ms;
+}
+
+#command-bar #controls button.media-control::after {
+    content: "";
+}
+
+#command-bar #controls button.media-control.muted {
+    background-color: #ff195b;
+}
+
+#command-bar h3 {
+    padding: 5px;
+    background: linear-gradient(#009696, #009688);
+    color: white;
+    width: 100%;
+    margin: 0;
+    min-width: 350px;
+    border-top: 1px solid #23eee7;
+    border-bottom: 1px solid #032120;
+}
+
+#command-bar e #participant-list {
+    background: linear-gradient(#b9b5b5, #7e7e7e);
+    min-width: 350px;
+}
+
+#command-bar #messages {
+    overflow: scroll;
+    min-height: 200px;
+}
+
+#command-bar #message-controller {
+    min-width: 350px;
+    position: absolute;
+    bottom: 0;
+    border-top: 1px solid black;
+    width: 100%;
+}
+
+#command-bar #message-controller input {
+    width: 60%;
+    text-align: left;
+    border: 1px solid black;
+}
+
+#command-bar #message-controller button {
+    width: 28%;
+}
+
+#command-bar .participant-item {
+    padding: 5px;
+    border-bottom: 1px solid black;
+    border-top: 1px solid white;
+    background-color: #fff;
+    color: black;
+    position: relative;
+}
+
+#command-bar .participant-item .participant-item-name {
+    font-weight: 600;
+}
+
+#command-bar .participant-item .participant-item-locale {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+#command-bar .participant-item .participant-item-status {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100px;
+    padding: 5px;
+}
+
+#command-bar .participant-item .participant-status-icon {
+    display: inline-block;
+    margin-right: 4px;
+}
+
+#command-bar .participant-item .participant-stats {
+    min-width: 350px;
+    padding: 5px;
+    height: 15px;
+    background-color: #dddddd;
+    color: #4d5695;
+    font-size: 12px;
+    margin: 0 -5px -5px -5px;
+}
+
+#command-bar .participant-item .participant-stats strong {
+    color: #5c4aff;
+}
+
+#command-bar .message-item {
+    color: #515151;
+    background-color: #cce8e9;
+    margin: 8px;
+}
+
+#command-bar .message-item .col1 {
+    width: 70px;
+    display: inline-block;
+}
+
+#command-bar .message-item .col2 {
+    width: auto;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: top;
+}
+
+#command-bar .message-item .message-item-sender-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #42476b;
+    background-size: auto 100%;
+    background-position: center;
+}
+
+#command-bar .message-item .message-item-sender-name {
+    font-weight: 600;
+}
+
+#command-bar .message-item .message-item-timestamp {
+    font-size: 10px;
+}
+
+#command-bar .message-item .message-item-content {
+    color: black;
+}
+
+.about-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    padding: 30px;
+    color: black;
+    background-color: white;
+    text-align: left;
+}
+
+.about-box p {
+    max-width: 900px;
+    margin: 10px auto;
+    color: #525252;
+}
+
+.about-box h1,
+.about-box h2,
+.about-box h3 {
+    max-width: 900px;
+    margin: auto;
+    color: #69506e;
+}
+
+.about-box h1 {
+    line-height: 35px;
+}
+
+.about-box h2 {
+    font-weight: 200;
+}
+
+@media (max-width: 700px) {
+    .about-box {
+        display: none;
+    }
+}
+
+.user-input {
+    width: 300px;
+    margin: 120px auto;
+    padding-top: 75px;
+    text-align: center;
+    position: relative;
+}
+
+.user-input .step {
+    text-align: center;
+    opacity: 1;
+    transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1) 400ms;
+    position: absolute;
+    z-index: 200;
+    top: 0;
+}
+
+.user-input .step.hide {
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(-20px) scaleX(0.8);
+    transition: all 200ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.step-display {
+    border-radius: 20px;
+    width: fit-content;
+    height: fit-content;
+    padding: 4px;
+    margin: 60px auto;
+}
+
+.step-display .step-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #ffffff44;
+    display: inline-block;
+    margin: 5px;
+    border-radius: 50%;
+    vertical-align: middle;
+    transition: all 400ms;
+}
+
+.step-display .step-dot.active {
+    background-color: #ffffff;
+    width: 20px;
+    height: 20px;
+}
+
+.precall {
+    text-align: center;
+    width: fit-content;
+    margin: auto;
+}
+
+.precall video {
+    transform: rotateY(180deg);
+}
+
+.precall .about-box a {
+    color: #031b3e;
+}
+
+.precall a {
+    display: block;
+    margin-top: 10px;
+    color: #fff;
+}
+
+.video-mask {
+    overflow: hidden;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+    border: 2px solid #031b3e;
+    border-radius: 5px;
+    background-image: url("../assets/images/video-bg.svg");
+    margin: 20px;
+    transition: all 200ms;
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+
+.video-mask .masked-video {
+    opacity: 1;
+    transition: all 400ms;
+}
+
+.video-mask.enter {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.video-mask.enter .masked-video {
+    opacity: 0;
+}
+
+.masked-video {
+    margin: auto -50%;
+}
+
+.video-element {
+    border-radius: 4px;
+    border: 1px solid #031b3e;
+}
+
+.video-element.small {
+    height: 200px;
+}
+
+.video-element.thumb {
+    height: 70px;
+}
+
+.video-element.large {
+    height: 480px;
+}
+
+.video-element.full {
+    height: 80%;
+}
+
+.audio-meter {
+    display: block;
+    height: 20px;
+    width: 100%;
+    position: absolute;
+    bottom: -3px;
+}
+
+#connectivity-display {
+    border: 1px inset #031b3e;
+    width: fit-content;
+    height: fit-content;
+    padding: 15px;
+    margin: 20px auto;
+    display: block;
+    background-color: #ffffff33;
+    border-radius: 30px;
+}
+
+#connectivity-display img {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+}
+
+/*# sourceMappingURL=main.css.map */
